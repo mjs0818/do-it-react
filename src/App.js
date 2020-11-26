@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
-import './App.css';
-
+import NewCounter from './03/NewCounter';
+import Counter from './03/Counter';
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 10 };
+    this.resetCount = this.resetCount.bind(this);
+  }
+  resetCount() {
+    this.setState(({ count }) => ({
+      count: count + 10,
+    }));
+  }
   render() {
     return (
-      <div className='App'>        <h1 className="title">두잇! 리액트 시작하기</h1></div>
+      <div>
+        <div>
+          <Counter count={this.state.count} />
+        </div>
+        <div>
+          <NewCounter count={this.state.count} />
+        </div>
+        <button onClick={this.resetCount}>{this.state.count + 10}으로 초기화</button>
+      </div>
     );
   }
 }
-
