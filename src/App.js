@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
-import NewCounter from './03/NewCounter';
-import Counter from './03/Counter';
+import MyCom from './MyCom';
+import MyPureComponent from './MyPureComponent';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { count: 10 };
-    this.resetCount = this.resetCount.bind(this);
+    this.listValue = [{ name: 'Park' }, { name: 'Lee' }];
+    this.state = { version: 0 };
+    this.handleClick = this.handleClick.bind(this);
   }
-  resetCount() {
-    this.setState(({ count }) => ({
-      count: count + 10,
-    }));
+
+  handleClick() {
+    setTimeout(() => {
+      this.listValue[0].name = 'Justin';
+      this.setState({ version: 1 });
+    }, 1000);
+    setTimeout(() => {
+      this.listValue = [{ name: 'Justin' }, { name: 'Lee' }];
+      this.setState({ version: 2 });
+    }, 2000);
   }
   render() {
+    console.log(this.listValue);
     return (
       <div>
-        <div>
-          <Counter count={this.state.count} />
-        </div>
-        <div>
-          <NewCounter count={this.state.count} />
-        </div>
-        <button onClick={this.resetCount}>{this.state.count + 10}으로 초기화</button>
+        <MyCom value={this.listValue} />
+        <MyPureComponent value={this.listValue} />
+        <button onClick={this.handleClick}>버튼</button>
       </div>
     );
   }
