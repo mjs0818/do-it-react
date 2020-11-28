@@ -20,7 +20,7 @@ class Input extends PureComponent {
   }
   componentDidUpdate() {
     if (this.props.autoFocus) {
-      this.ref.focus;
+      this.ref.focus();
     }
   }
   setRef(ref) {
